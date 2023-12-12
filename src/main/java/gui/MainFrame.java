@@ -1,5 +1,7 @@
 package gui;
 
+import com.sun.tools.javac.util.RawDiagnosticFormatter;
+
 import javax.swing.*;
 import java.awt.*;
 
