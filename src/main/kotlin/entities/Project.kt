@@ -12,6 +12,6 @@ data class Project(
     var name: String,
     var deadline: LocalDate,
     var budget: Double,
-    var tasks: MutableList<Task> = mutableListOf(),
+    //var tasks: MutableList<Task> = mutableListOf(),
 
 )

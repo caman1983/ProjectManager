@@ -10,7 +10,7 @@
 //
 //public class FormFrame extends JPanel
 //{
-//    // Ca
+//    // Declare class attributes
 //    private JTextField nameTextField;
 //    private JTextField deadlineTextField;
 //    private JTextField budgetTextField;
@@ -22,7 +22,7 @@
 //
 //        setLayout(new GridLayout(4, 2, 5, 5)); // 4 rows, 2 columns layout
 //
-//        // Initialize components
+//        // Initialize attributes
 //        nameTextField = new JTextField(20);
 //        deadlineTextField = new JTextField(10);
 //        budgetTextField = new JTextField(10);
@@ -46,18 +46,18 @@
 //            }
 //        });
 //    }
+
+//    private void addProject() {
+//        String name = nameTextField.getText();
+//        LocalDate deadline = LocalDate.parse(deadlineTextField.getText());
+//        double budget = Double.parseDouble(budgetTextField.getText());
 //
-////    private void addProject() {
-////        String name = nameTextField.getText();
-////        LocalDate deadline = LocalDate.parse(deadlineTextField.getText());
-////        double budget = Double.parseDouble(budgetTextField.getText());
-////
-////        Project newProject = new Project(name, deadline, budget);
-////        tableModel.addProject(newProject);
-////
-////        // Optionally, clear the text fields after adding
-////        nameTextField.setText("");
-////        deadlineTextField.setText("");
-////        budgetTextField.setText("");
-////    }
-////}
+//        Project newProject = new Project(name, deadline, budget);
+//        tableModel.addProject(newProject);
+//
+//        // Optionally, clear the text fields after adding
+//        nameTextField.setText("");
+//        deadlineTextField.setText("");
+//        budgetTextField.setText("");
+//    }
+//}

@@ -1,22 +1,30 @@
 package gui;
 
+import entities.Project;
+
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.util.Collections;
 
 // Main frame of GUI, to be used across all pages
 public class MainFrame extends JFrame
 {
+    // Class variables
 
     // Constructor
     public MainFrame()
     {
-        //Add declaration of variables up here at some point
         // Declare and initialise mainFrame
         setLayout(new BorderLayout());
 
         // Declare and initialise content panels
-        JPanel mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel sidePanel = new JPanel();
+
+        // Main content area - centre of JPanel, to change across pages
+        // Customise main content area
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Set title size and close operation
         setTitle("Project Management System");
@@ -40,18 +48,12 @@ public class MainFrame extends JFrame
         sidePanel.add(tasksButton);
         sidePanel.add(usersButton);
 
-
-
-
         // Style the buttons as needed
 
 
-        // Main content area - centre of JPanel, to change across pages
-        //JPanel mainPanel = new JPanel(new BorderLayout());  // create main panel frame
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
         // Creates table panel object
-        ProjectTableModel tableModel = new ProjectTableModel();
+        Project project1 = new Project(("FirstProject"), LocalDate.parse("2001-12-23"), 22.0);
+        ProjectTableModel tableModel = new ProjectTableModel(Collections.singletonList(project1));
         JTable table = new JTable(tableModel);
 
         // Add table to scroll panel
@@ -65,5 +67,6 @@ public class MainFrame extends JFrame
         mainPanel.add(scrollPane, BorderLayout.CENTER);
         // Display the frame
         setVisible(true);
-    }
+
+    } // End of constructor
 }
