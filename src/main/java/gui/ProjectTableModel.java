@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Class for table panel, to display projects
-public class ProjectTableModel extends AbstractTableModel
+public class ProjectTableModel extends AbstractTableModel // Class
 {
     // Class variables
     private List<Project> projects = new ArrayList<>();
@@ -17,8 +17,8 @@ public class ProjectTableModel extends AbstractTableModel
     // Constructor, takes a list of project objects and passes to class level
     public ProjectTableModel(List<Project> projects)
     {
-        this.projects = projects;
-    }
+        this.projects = new ArrayList<>(projects);
+    } // Constructor
 
 
     // Override abstract methods
@@ -56,7 +56,7 @@ public class ProjectTableModel extends AbstractTableModel
         }
     }
 
-    // add project object to table
+    //add project object to table
     public void addProject(Project project)
     {
         // add project object to list of project objects
@@ -66,10 +66,10 @@ public class ProjectTableModel extends AbstractTableModel
         fireTableRowsInserted(projects.size() - 1, projects.size() - 1);
     }
 
-    //remove project object at specified index from table
+   //remove project object at specified index from table
     public void removeProject(int rowIndex)
     {
-        projects.remove(rowIndex);
+       projects.remove(rowIndex);
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
 }

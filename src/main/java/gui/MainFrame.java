@@ -51,18 +51,23 @@ public class MainFrame extends JFrame
         // Style the buttons as needed
 
 
-        // Creates table panel object
+
         Project project1 = new Project(("FirstProject"), LocalDate.parse("2001-12-23"), 22.0);
+
+        // Creates table panel object
         ProjectTableModel tableModel = new ProjectTableModel(Collections.singletonList(project1));
+
+        // changes table panel object to JTable
         JTable table = new JTable(tableModel);
 
         // Add table to scroll panel
         JScrollPane scrollPane = new JScrollPane(table);
 
+        ProjectFormFrame formPanel = new ProjectFormFrame(tableModel, table);
         // Add sidePanel and content panel to the main frame
         add(sidePanel, BorderLayout.WEST);
         add(mainPanel, BorderLayout.CENTER);
-
+        add(formPanel, BorderLayout.EAST);
         // Add scroll panel to main panel
         mainPanel.add(scrollPane, BorderLayout.CENTER);
         // Display the frame

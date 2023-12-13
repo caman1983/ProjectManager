@@ -13,5 +13,5 @@ data class Project(
     var deadline: LocalDate,
     var budget: Double,
     //var tasks: MutableList<Task> = mutableListOf(),
-
+    // declare task outside of constructor and create add method
 )
