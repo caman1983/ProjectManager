@@ -9,7 +9,7 @@ import java.util.List;
 public class TaskTableModel extends AbstractTableModel
 {
     private final List<Project> projects;
-    private final String[] columnNames = {"Project:", "Description", "Duration (Days)", "Subtasks"};
+    private final String[] columnNames = {"Project:", "Description", "Duration (Days)", "Tasks"};
 
     public TaskTableModel(List<Project> projects) {
         this.projects = projects;
@@ -42,7 +42,7 @@ public class TaskTableModel extends AbstractTableModel
         }
     }
 
-//    private Task getTaskByRowIndex(int rowIndex) {
+//    private Task getTaskByRpowIndex(int rowIndex) {
 //        int taskCount = 0;
 //        for (Project project : projects) {  // Iterate over each project
 //            for (Task task : project.getTasks()) {  // Iterate over tasks of each project
