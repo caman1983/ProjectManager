@@ -1,15 +1,12 @@
-import entities.Project
-import entities.Task
 //import graph.TaskGraph
-import java.time.LocalDate
 import javax.swing.SwingUtilities
-import gui.MainFrame
+import gui.landingPage.LandingFrame
 
 // driver class
 fun main(args: Array<String>)
 {
 //    //create object of project
-//    var firstProject = Project("FirstProject", LocalDate.parse("2001-12-23"), 22.0)
+
 //
 //
 //    //Create object of task
@@ -28,6 +25,6 @@ fun main(args: Array<String>)
 //    graph.printMatrix()
 
     SwingUtilities.invokeLater {
-        MainFrame()
+        LandingFrame()
     }
 }

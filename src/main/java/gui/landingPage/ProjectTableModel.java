@@ -1,4 +1,4 @@
-package gui;
+package gui.landingPage;
 
 import entities.Project;
 

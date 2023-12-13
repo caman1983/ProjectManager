@@ -1,12 +1,14 @@
-package gui;
+package gui.landingPage;
 
 import entities.Project;
+import entities.Task;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ProjectFormFrame extends JPanel
 {
@@ -15,6 +17,7 @@ public class ProjectFormFrame extends JPanel
     private JTextField nameTextField;
     private JTextField deadlineTextField;
     private JTextField budgetTextField;
+    private JTextField idTextField;
 
     // declare buttons to add and remove fields
     private JButton addButton;
@@ -46,12 +49,16 @@ public class ProjectFormFrame extends JPanel
         removeButton = new JButton("Remove Selected Project");
 
         // Add components to the panel
+        // Add components to the paneli
         add(new JLabel("Name:"));
         add(nameTextField);
+
         add(new JLabel("Deadline (YYYY-MM-DD):"));
         add(deadlineTextField);
+
         add(new JLabel("Budget:"));
         add(budgetTextField);
+
         add(addButton);
         add(removeButton);
 
@@ -83,12 +90,13 @@ public class ProjectFormFrame extends JPanel
         {
             // Returns text from nameTextField and assigns to var name
             String name = nameTextField.getText();
-
             LocalDate deadline = LocalDate.parse(deadlineTextField.getText()); // Add error handling
             double budget = Double.parseDouble(budgetTextField.getText()); // Add error handling
 
+            ArrayList<Task> tasks = new ArrayList<Task>(); // Create and initialize the ArrayList
             // Creates project object
-            Project newProject = new Project(name, deadline, budget);
+
+            Project newProject = new Project(name, deadline, budget, tasks);
             tableModel.addProject(newProject);
             // Clear input fields
             nameTextField.setText("");

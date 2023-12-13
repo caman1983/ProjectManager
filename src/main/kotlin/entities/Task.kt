@@ -10,8 +10,11 @@ duration : estimated duration of task
 successorTask : child or subtasks
 */
 data class Task(
-    var id: Int,
     var description: String,
     var durationInDays: Int,
     var successorTasks: MutableList<Task> = mutableListOf(),
 )
+{
+    var parentProject: Project? = null // pointer to parent object
+}
+
