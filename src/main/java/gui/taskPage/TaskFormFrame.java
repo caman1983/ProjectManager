@@ -8,14 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class TaskFormFrame extends JPanel
-{
-
-//    var id: Int,
-//    var description: String,
-//    var durationInDays: Int,
-//    var successorTasks: MutableList<Task> = mutableListOf()
-
+public class TaskFormFrame extends JPanel {
     // Declare class attributes
     // text fields for adding and removing table elements
     private JTextField NameTextField;
@@ -25,7 +18,7 @@ public class TaskFormFrame extends JPanel
     // declare buttons to add and remove fields
     private JButton addButton;
     private JButton removeButton;
-    private JButton addSuccessor;
+    private JButton addSuccessor; //this button should open a table of successor tasks
 
     // table model object
     private TaskTableModel taskTableModel;
@@ -48,8 +41,8 @@ public class TaskFormFrame extends JPanel
         NameTextField = new JTextField(20);
         descriptionTextField = new JTextField(10);
         durationInDaysTextfield = new JTextField(10);
-        addButton = new JButton("Add Project");
-        removeButton = new JButton("Remove Selected Project");
+        addButton = new JButton("Add Task");
+        removeButton = new JButton("Remove Selected Selected task, (will remove all sub-tasks");
 
         // Add components to the panel
         add(new JLabel("Task Name:"));
@@ -71,38 +64,34 @@ public class TaskFormFrame extends JPanel
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addTask();
+                addTaskToSelectedRow();
             }
         });
-
-        // listener to remove task object to table
-        removeButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                removeSelectedProject();
-            }
-        });
-    }   // end of constructor
+    }
 
 
     // Methods
-    private void addTask()   // Add task object
+    private void addTaskToSelectedRow()   // Add task object
     {
+        System.out.println("adding task...");
         // Returns text from nameTextField and assigns to var name
         String name = NameTextField.getText();
 
         // Returns text from durationInDayText fields and assigns to var as integer
         int days = Integer.parseInt((durationInDaysTextfield.getText())); // Add error handling
 
-        ArrayList<Task> successorTasks = new ArrayList<Task>(); // Create and initialize the ArrayList
-        // Creates project object
-        Task newTask = new Task(name, days, successorTasks);
+        // Returns selected row index as integer
+        int selectedRowIndex = table.getSelectedRow();
 
-        // link task to parent project
-//        taskTableModel.addTask(newProject);
-//        taskTableModel.addTask();
+        // Create and initialize empty arrayList of successor tasks
+        ArrayList<Task> successorTasks = new ArrayList<Task>();
+
+        // if number falls within range of table items, remove
+//        if (selectedRowIndex >= 0)
+//        {
+            // WHY PLUS ONE?
+            taskTableModel.addTask(new Task(name, days, successorTasks), selectedRowIndex + 1);
+
 
         // Clear input fields
         NameTextField.setText("");
@@ -110,24 +99,11 @@ public class TaskFormFrame extends JPanel
         durationInDaysTextfield.setText("");
 
     }
+//        else{JOptionPane.showMessageDialog(this, "Please select a row to remove.");}
 
 
-    public void removeSelectedProject() // remove selected project object from table
-    {
-        // assigns selected row to variable as index
-        int selectedRowIndex = table.getSelectedRow();
-        // if number falls within range of table items, remove
-        if (selectedRowIndex >= 0)
-        {
-            //taskTableModel.(selectedRowIndex);
-        }
-
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Please select a row to remove.");
-        }
-    }
 }
+
 
 
 

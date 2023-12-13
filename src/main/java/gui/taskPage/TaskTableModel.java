@@ -35,15 +35,38 @@ public class TaskTableModel extends AbstractTableModel // Class
     @Override
     public Object getValueAt(int rowIndex, int columnIndex)
     {
+
         Project project = projects.get(rowIndex);
         switch (columnIndex)
         {
             case 0: return project.getName();
             case 1: return "";  // Initially empty
             case 2: return "";  // Initially empty
-            case 3: return "";  // Initially empty
+            case 3: return project.getTasks();  // Initially empty
             default: throw new IllegalArgumentException("Invalid column index");
         }
     }
+
+
+    public void addTask(Task task, int selectedRowIndex)
+    {
+        //if selected row index is a valid index
+        if (selectedRowIndex >= 0 && selectedRowIndex < projects.size())
+        {
+            //create var of selectedProject object at given index
+            Project selectedProject = projects.get(selectedRowIndex);
+
+            // add the task to the selected object
+            selectedProject.addTask(task);
+            fireTableRowsUpdated(selectedRowIndex, selectedRowIndex);
+        }
+        else
+        {
+            "".isEmpty(); // do nothing
+            // Handle case where selected project is invalid
+        }
+    }
+
+
 }
 

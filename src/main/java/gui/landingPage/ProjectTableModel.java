@@ -73,6 +73,7 @@ public class ProjectTableModel extends AbstractTableModel // Class
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
+    // returns project array list, allows table to update
     public List<Project> updateProjects()
     {
         return projects;

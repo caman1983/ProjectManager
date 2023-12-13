@@ -2,6 +2,7 @@ package gui.landingPage;
 
 import entities.Project;
 import entities.Task;
+import gui.taskPage.TaskFormFrame;
 import gui.taskPage.TaskTableModel;
 //import gui.taskPage.TasksPanel;
 
@@ -117,6 +118,10 @@ public class LandingFrame extends JFrame
                 TaskTableModel taskTableModel = new TaskTableModel(tableModel.updateProjects());
                 JTable tasksTable = new JTable(taskTableModel);
 
+
+                TaskFormFrame taskFormPanel = new TaskFormFrame(taskTableModel, table);
+
+
                 // Add the table to a JScrollPane
                 JScrollPane tasksScrollPane = new JScrollPane(tasksTable);
                 tasksScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -124,6 +129,10 @@ public class LandingFrame extends JFrame
 
                 // Add the scroll pane (with the table) to the mainPanel
                 mainPanel.add(tasksScrollPane, BorderLayout.CENTER);
+
+                //
+                mainPanel.add(taskFormPanel, BorderLayout.EAST);
+
 
                 // Revalidate and repaint the panel to update the UI
                 mainPanel.revalidate();
