@@ -6,7 +6,7 @@ import entities.Task;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class TaskTableModel extends AbstractTableModel
+public class TaskTableModel extends AbstractTableModel // Class
 {
     private final List<Project> projects;
     private final String[] columnNames = {"Project:", "Description", "Duration (Days)", "Tasks"};
@@ -36,27 +36,14 @@ public class TaskTableModel extends AbstractTableModel
     public Object getValueAt(int rowIndex, int columnIndex)
     {
         Project project = projects.get(rowIndex);
-        switch (columnIndex) {
+        switch (columnIndex)
+        {
             case 0: return project.getName();
+            case 1: return "";  // Initially empty
+            case 2: return "";  // Initially empty
+            case 3: return "";  // Initially empty
             default: throw new IllegalArgumentException("Invalid column index");
         }
     }
-
-//    private Task getTaskByRpowIndex(int rowIndex) {
-//        int taskCount = 0;
-//        for (Project project : projects) {  // Iterate over each project
-//            for (Task task : project.getTasks()) {  // Iterate over tasks of each project
-//                if (taskCount == rowIndex) {
-//                    return task;
-//                }
-//                taskCount++;
-//            }
-//        }
-//        throw new IllegalArgumentException("Invalid row index");
-//    }
-
-
-
-
 }
 

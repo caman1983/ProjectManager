@@ -72,4 +72,11 @@ public class ProjectTableModel extends AbstractTableModel // Class
        projects.remove(rowIndex);
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
+
+    public List<Project> updateProjects()
+    {
+        return projects;
+    }
+
+
 }

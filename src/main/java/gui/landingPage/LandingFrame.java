@@ -1,6 +1,7 @@
 package gui.landingPage;
 
 import entities.Project;
+import entities.Task;
 import gui.taskPage.TaskTableModel;
 //import gui.taskPage.TasksPanel;
 
@@ -19,7 +20,7 @@ public class LandingFrame extends JFrame
     // Class variables
     // Declare and initialise empty array list of project objects
     ArrayList<Project> projects = new ArrayList<>();
-
+    ArrayList<Task> tasks = new ArrayList<>();
 
     // Constructor
     public LandingFrame()
@@ -105,7 +106,7 @@ public class LandingFrame extends JFrame
         setVisible(true);
 
 
-
+        // changes to TaskFormFrame
         tasksButton.addActionListener(new ActionListener()
         {
             @Override
@@ -113,7 +114,7 @@ public class LandingFrame extends JFrame
                 mainPanel.removeAll();
 
                 // Create a new TaskTableModel and JTable
-                TaskTableModel taskTableModel = new TaskTableModel(projects);
+                TaskTableModel taskTableModel = new TaskTableModel(tableModel.updateProjects());
                 JTable tasksTable = new JTable(taskTableModel);
 
                 // Add the table to a JScrollPane
