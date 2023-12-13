@@ -26,6 +26,6 @@ fun main(args: Array<String>)
 //    graph.printMatrix()
 
     SwingUtilities.invokeLater {
-        LoginFrame()
+        LandingFrame()
     }
 }

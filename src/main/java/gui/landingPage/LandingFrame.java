@@ -106,30 +106,45 @@ public class LandingFrame extends JFrame
 
 
 
-//        tasksButton.addActionListener(new ActionListener()
-//        {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                mainPanel.removeAll();
-//
-//                // Create a new TaskTableModel and JTable
-//                TaskTableModel taskTableModel = new TaskTableModel(projects);
-//                JTable tasksTable = new JTable(taskTableModel);
-//
-//                // Add the table to a JScrollPane
-//                JScrollPane tasksScrollPane = new JScrollPane(tasksTable);
-//                tasksScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-//                tasksScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//
-//                // Add the scroll pane (with the table) to the mainPanel
-//                mainPanel.add(tasksScrollPane, BorderLayout.CENTER);
-//
-//                // Revalidate and repaint the panel to update the UI
-//                mainPanel.revalidate();
-//                mainPanel.repaint();
-//            }
-//        });
+        tasksButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.removeAll();
 
+                // Create a new TaskTableModel and JTable
+                TaskTableModel taskTableModel = new TaskTableModel(projects);
+                JTable tasksTable = new JTable(taskTableModel);
+
+                // Add the table to a JScrollPane
+                JScrollPane tasksScrollPane = new JScrollPane(tasksTable);
+                tasksScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                tasksScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+                // Add the scroll pane (with the table) to the mainPanel
+                mainPanel.add(tasksScrollPane, BorderLayout.CENTER);
+
+                // Revalidate and repaint the panel to update the UI
+                mainPanel.revalidate();
+                mainPanel.repaint();
+            }
+        });
+
+        // returns back to LandingFrame when clicking projects button
+        projectsButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.removeAll();
+
+                mainPanel.add(scrollPane, BorderLayout.CENTER);
+                mainPanel.add(formPanel, BorderLayout.EAST);
+
+                // Revalidate and repaint the panel to update the UI
+                mainPanel.revalidate();
+                mainPanel.repaint();
+            }
+        });
 
 
     } // End of constructor
