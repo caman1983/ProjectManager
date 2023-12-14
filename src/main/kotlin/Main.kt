@@ -7,6 +7,7 @@ import gui.loginScreen.LoginFrame
 fun main(args: Array<String>)
 {
     SwingUtilities.invokeLater {
-        LoginFrame()
+        MainFrame()
+        //LoginFrame()
     }
 }

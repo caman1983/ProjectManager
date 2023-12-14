@@ -62,6 +62,21 @@ public class MainFrame extends JFrame
         usersButton.setForeground(Color.WHITE);
         projectsButton.setForeground(Color.WHITE);
 
+        Insets buttonMargin = new Insets(10, 10, 10, 10); // Top, left, bottom, right margins
+        tasksButton.setMargin(buttonMargin);
+        usersButton.setMargin(buttonMargin);
+        projectsButton.setMargin(buttonMargin);
+
+        Dimension buttonSize = new Dimension(120, 40); // Width, height
+        tasksButton.setPreferredSize(buttonSize);
+        usersButton.setPreferredSize(buttonSize);
+        projectsButton.setPreferredSize(buttonSize);
+
+        Font buttonFont = new Font("Arial", Font.PLAIN, 16); // Font name, style, size
+        tasksButton.setFont(buttonFont);
+        usersButton.setFont(buttonFont);
+        projectsButton.setFont(buttonFont);
+
         projectsButton.setOpaque(true);
         projectsButton.setContentAreaFilled(true);
         projectsButton.setBorderPainted(false);
