@@ -1,5 +1,6 @@
 package gui.taskPage;
 
+import entities.Project;
 import entities.Task;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+// TaskFormFrame class, handles visual components, is the actual frame
 public class TaskFormFrame extends JPanel
 {
 
@@ -71,7 +73,7 @@ public class TaskFormFrame extends JPanel
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addTask();
+                addTaskToSelectedProject();
             }
         });
 
@@ -88,21 +90,23 @@ public class TaskFormFrame extends JPanel
 
 
     // Methods
-    private void addTask()   // Add task object
+    private void addTaskToSelectedProject()   // Add task object, change name
     {
-        // Returns text from nameTextField and assigns to var name
+        // Returns text from name text field and assigns to var name
         String name = NameTextField.getText();
 
-        // Returns text from durationInDayText fields and assigns to var as integer
+        // Returns text from duration in days text field and assigns to var as integer
         int days = Integer.parseInt((durationInDaysTextfield.getText())); // Add error handling
 
-        ArrayList<Task> successorTasks = new ArrayList<Task>(); // Create and initialize the ArrayList
-        // Creates project object
-        Task newTask = new Task(name, days, successorTasks);
+        // selectedProject = project object at selected row
+        Project selectedProject = taskTableModel.getSelectedProject(getSelectedRowIndex());
 
-        // link task to parent project
-//        taskTableModel.addTask(newProject);
-//        taskTableModel.addTask();
+        // empty list of successor tasks for new task
+        ArrayList<Task> emptyListOfSuccessorTasks = new ArrayList<Task>();
+
+        Task newTask = new Task(name, days,emptyListOfSuccessorTasks);
+
+        selectedProject.addTask(newTask);
 
         // Clear input fields
         NameTextField.setText("");
@@ -111,6 +115,18 @@ public class TaskFormFrame extends JPanel
 
     }
 
+
+    // Returns selected row index as integer
+    public int getSelectedRowIndex()
+    {
+        int selectedRowIndex = table.getSelectedRow();
+
+        if(selectedRowIndex == -1)
+        {
+            System.out.println("Invalid row index" + selectedRowIndex);
+        }
+        return selectedRowIndex;
+    }
 
     public void removeSelectedProject() // remove selected project object from table
     {

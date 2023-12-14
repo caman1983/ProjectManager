@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-// Class for table panel, to display projects
+// Class for table panel, to display projects, receives list of project objects
 public class ProjectTableModel extends AbstractTableModel // Class
 {
     // Class variables
@@ -73,7 +73,7 @@ public class ProjectTableModel extends AbstractTableModel // Class
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
-    public List<Project> updateProjects()
+    public List<Project> getUpdatedProjList()
     {
         return projects;
     }

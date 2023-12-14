@@ -19,6 +19,9 @@ data class Project(
     // add task to Tasks list
     fun addTask(task: Task) {
         tasks.add(task)
+
+        // will indicate the parent project is this object
+        // parentProject =  pointer to parent object
         task.parentProject = this
     }
 }

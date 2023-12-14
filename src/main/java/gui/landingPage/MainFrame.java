@@ -2,6 +2,7 @@ package gui.landingPage;
 
 import entities.Project;
 import entities.Task;
+import gui.taskPage.TaskFormFrame;
 import gui.taskPage.TaskTableModel;
 //import gui.taskPage.TasksPanel;
 
@@ -9,13 +10,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 // Main frame of GUI, to be used across all pages
-public class LandingFrame extends JFrame
+public class MainFrame extends JFrame
 {
     // Class variables
     // Declare and initialise empty array list of project objects
@@ -23,7 +21,7 @@ public class LandingFrame extends JFrame
     ArrayList<Task> tasks = new ArrayList<>();
 
     // Constructor
-    public LandingFrame()
+    public MainFrame()
     {
         // Declare and initialise mainFrame
         setLayout(new BorderLayout());
@@ -83,16 +81,16 @@ public class LandingFrame extends JFrame
         //Project project1 = new Project(("FirstProject"), LocalDate.parse("2001-12-23"), 22.0);
 
         // Creates table panel object
-        ProjectTableModel tableModel = new ProjectTableModel(projects);
+        ProjectTableModel projectTableModel = new ProjectTableModel(projects);
 
         // changes table panel object to JTable
-        JTable table = new JTable(tableModel);
+        JTable ProjectTable = new JTable(projectTableModel);
 
         // Add table to scroll panel
-        JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane ProjectScrollPane = new JScrollPane(ProjectTable);
 
 
-        ProjectFormFrame formPanel = new ProjectFormFrame(tableModel, table);
+        ProjectFormFrame ProjectFormPanel = new ProjectFormFrame(projectTableModel, ProjectTable);
 
         // Add sidePanel and content panel to the main frame
         add(sidePanel, BorderLayout.WEST);
@@ -100,8 +98,8 @@ public class LandingFrame extends JFrame
 
 
         // Add scroll panel to main panel
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
-        mainPanel.add(formPanel, BorderLayout.EAST);
+        mainPanel.add(ProjectScrollPane, BorderLayout.CENTER);
+        mainPanel.add(ProjectFormPanel, BorderLayout.EAST);
         // Display the frame
         setVisible(true);
 
@@ -114,8 +112,14 @@ public class LandingFrame extends JFrame
                 mainPanel.removeAll();
 
                 // Create a new TaskTableModel and JTable
-                TaskTableModel taskTableModel = new TaskTableModel(tableModel.updateProjects());
+                TaskTableModel taskTableModel = new TaskTableModel(projectTableModel.getUpdatedProjList());
+
+                // create a new Jtable using the custom task table model
                 JTable tasksTable = new JTable(taskTableModel);
+
+                // Create a new frame using custom task frame
+                TaskFormFrame taskFormPanel = new TaskFormFrame(taskTableModel, ProjectTable);
+
 
                 // Add the table to a JScrollPane
                 JScrollPane tasksScrollPane = new JScrollPane(tasksTable);
@@ -124,6 +128,10 @@ public class LandingFrame extends JFrame
 
                 // Add the scroll pane (with the table) to the mainPanel
                 mainPanel.add(tasksScrollPane, BorderLayout.CENTER);
+
+                //
+                mainPanel.add(taskFormPanel, BorderLayout.EAST);
+
 
                 // Revalidate and repaint the panel to update the UI
                 mainPanel.revalidate();
@@ -138,8 +146,8 @@ public class LandingFrame extends JFrame
             public void actionPerformed(ActionEvent e) {
                 mainPanel.removeAll();
 
-                mainPanel.add(scrollPane, BorderLayout.CENTER);
-                mainPanel.add(formPanel, BorderLayout.EAST);
+                mainPanel.add(ProjectScrollPane, BorderLayout.CENTER);
+                mainPanel.add(ProjectFormPanel, BorderLayout.EAST);
 
                 // Revalidate and repaint the panel to update the UI
                 mainPanel.revalidate();
