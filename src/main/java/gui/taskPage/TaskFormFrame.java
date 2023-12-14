@@ -50,8 +50,8 @@ public class TaskFormFrame extends JPanel
         NameTextField = new JTextField(20);
         descriptionTextField = new JTextField(10);
         durationInDaysTextfield = new JTextField(10);
-        addButton = new JButton("Add Project");
-        removeButton = new JButton("Remove Selected Project");
+        addButton = new JButton("Add Task to selected project");
+        removeButton = new JButton("View task list of project");
 
         // Add components to the panel
         add(new JLabel("Task Name:"));
@@ -90,7 +90,7 @@ public class TaskFormFrame extends JPanel
 
 
     // Methods
-    private void addTaskToSelectedProject()   // Add task object, change name
+    private void addTaskToSelectedProject()   //
     {
         // Returns text from name text field and assigns to var name
         String name = NameTextField.getText();
@@ -102,12 +102,12 @@ public class TaskFormFrame extends JPanel
         Project selectedProject = taskTableModel.getSelectedProject(getSelectedRowIndex());
 
         // empty list of successor tasks for new task
-        ArrayList<Task> emptyListOfSuccessorTasks = new ArrayList<Task>();
+        //ArrayList<Task> emptyListOfSuccessorTasks = new ArrayList<Task>();
 
-        Task newTask = new Task(name, days,emptyListOfSuccessorTasks);
-
+        Task newTask = new Task(name, days);
+        System.out.println("Before: "+selectedProject.getTasks());
         selectedProject.addTask(newTask);
-
+        System.out.println("After: "+selectedProject.getTasks());
         // Clear input fields
         NameTextField.setText("");
         descriptionTextField.setText("");
@@ -123,7 +123,7 @@ public class TaskFormFrame extends JPanel
 
         if(selectedRowIndex == -1)
         {
-            System.out.println("Invalid row index" + selectedRowIndex);
+            selectedRowIndex = 0;
         }
         return selectedRowIndex;
     }

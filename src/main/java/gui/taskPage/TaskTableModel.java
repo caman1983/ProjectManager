@@ -11,7 +11,7 @@ public class TaskTableModel extends AbstractTableModel // Class
 {
     // Updated list of projects, all project objects contain lists of tasks
     private final List<Project> projects;
-    private final String[] columnNames = {"Project:", "Description", "Duration (Days)", "Tasks"};
+    private final String[] columnNames = {"Project:", "Tasks"};
 
 
     public TaskTableModel(List<Project> projects) {
@@ -42,14 +42,13 @@ public class TaskTableModel extends AbstractTableModel // Class
     {
         Project project = projects.get(rowIndex);
         // i want to display the tasks of a project
-        List<Task> taskList = project.getTasks();
-        Task taskInfo = taskList.get(rowIndex);
+        //List<Task> taskList = project.getTasks();
+        //Task taskInfo = taskList.get(rowIndex);
+
         switch (columnIndex)
         {
             case 0: return project.getName();
-            case 1: return "";  // Initially empty
-            case 2: return "";  // Initially empty
-            case 3: return taskInfo.getDescription();  // Initially empty
+            case 1: return project.getTasks().size();  // Initially empty
             default: throw new IllegalArgumentException("Invalid column index");
         }
     }

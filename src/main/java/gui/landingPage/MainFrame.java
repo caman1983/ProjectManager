@@ -118,7 +118,7 @@ public class MainFrame extends JFrame
                 JTable tasksTable = new JTable(taskTableModel);
 
                 // Create a new frame using custom task frame
-                TaskFormFrame taskFormPanel = new TaskFormFrame(taskTableModel, ProjectTable);
+                TaskFormFrame taskFormPanel = new TaskFormFrame(taskTableModel, tasksTable);
 
 
                 // Add the table to a JScrollPane
