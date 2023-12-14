@@ -41,10 +41,6 @@ public class TaskTableModel extends AbstractTableModel // Class
     public Object getValueAt(int rowIndex, int columnIndex)
     {
         Project project = projects.get(rowIndex);
-        // i want to display the tasks of a project
-        //List<Task> taskList = project.getTasks();
-        //Task taskInfo = taskList.get(rowIndex);
-
         switch (columnIndex)
         {
             case 0: return project.getName();
@@ -63,6 +59,10 @@ public class TaskTableModel extends AbstractTableModel // Class
         return selectedProject;
     }
 
+    public List<Project> getUpdatedProjList()
+    {
+        return projects;
+    }
 
 
 

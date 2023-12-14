@@ -7,17 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 // TaskFormFrame class, handles visual components, is the actual frame
 public class TaskFormFrame extends JPanel
 {
-
-//    var id: Int,
-//    var description: String,
-//    var durationInDays: Int,
-//    var successorTasks: MutableList<Task> = mutableListOf()
-
     // Declare class attributes
     // text fields for adding and removing table elements
     private JTextField NameTextField;
@@ -26,7 +19,7 @@ public class TaskFormFrame extends JPanel
 
     // declare buttons to add and remove fields
     private JButton addButton;
-    private JButton removeButton;
+    private JButton OpenSuccessorTaskTableButton;
     private JButton addSuccessor;
 
     // table model object
@@ -51,7 +44,7 @@ public class TaskFormFrame extends JPanel
         descriptionTextField = new JTextField(10);
         durationInDaysTextfield = new JTextField(10);
         addButton = new JButton("Add Task to selected project");
-        removeButton = new JButton("View task list of project");
+        OpenSuccessorTaskTableButton = new JButton("View task list of project");
 
         // Add components to the panel
         add(new JLabel("Task Name:"));
@@ -64,7 +57,7 @@ public class TaskFormFrame extends JPanel
         add(durationInDaysTextfield);
 
         add(addButton);
-        add(removeButton);
+        add(OpenSuccessorTaskTableButton);
 
 
         // Action listeners
@@ -77,13 +70,13 @@ public class TaskFormFrame extends JPanel
             }
         });
 
-        // listener to remove task object to table
-        removeButton.addActionListener(new ActionListener()
+
+        OpenSuccessorTaskTableButton.addActionListener(new ActionListener()  // listener to view task list table
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                removeSelectedProject();
+                viewSuccessorTaskTable(); // opens task table
             }
         });
     }   // end of constructor
@@ -106,6 +99,8 @@ public class TaskFormFrame extends JPanel
 
         Task newTask = new Task(name, days);
         System.out.println("Before: "+selectedProject.getTasks());
+
+        // new task list!!
         selectedProject.addTask(newTask);
         System.out.println("After: "+selectedProject.getTasks());
         // Clear input fields
@@ -128,20 +123,29 @@ public class TaskFormFrame extends JPanel
         return selectedRowIndex;
     }
 
-    public void removeSelectedProject() // remove selected project object from table
+    public void viewSuccessorTaskTable() // button to view task table of selected row
     {
-        // assigns selected row to variable as index
-        int selectedRowIndex = table.getSelectedRow();
-        // if number falls within range of table items, remove
-        if (selectedRowIndex >= 0)
-        {
-            //taskTableModel.(selectedRowIndex);
-        }
+        // updated project object, hopefully
+        Project selectedProject = taskTableModel.getSelectedProject(getSelectedRowIndex());
 
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Please select a row to remove.");
-        }
+        //pass selected project into successor task model
+        SuccessorTasksModel successorTasksModel = new SuccessorTasksModel(selectedProject);
+
+        // actual table
+        JTable successorTasksTable = new JTable(successorTasksModel);
+        JScrollPane successorScrollPane = new JScrollPane(successorTasksTable); // Add table to a scroll pane for better usability
+
+        JLabel infoLabel = new JLabel("Tasks appear in their respective order of completion");
+        JFrame frame = new JFrame("Tasks Table");
+
+        frame.setLayout(new BorderLayout()); // Set layout manager
+        frame.add(successorScrollPane); // Add the scroll pane to the frame
+        frame.setSize(400, 300); // Set the size of the frame
+
+        frame.add(infoLabel, BorderLayout.NORTH); // Add label at the top of the frame
+        frame.add(successorScrollPane, BorderLayout.CENTER); // Add the table in the center
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Set default close operation
+        frame.setVisible(true); // Make sure the frame is visible
     }
 }
 
