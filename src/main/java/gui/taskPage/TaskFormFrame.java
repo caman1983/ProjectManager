@@ -11,6 +11,12 @@ import java.awt.event.ActionListener;
 // TaskFormFrame class, handles visual components, is the actual frame
 public class TaskFormFrame extends JPanel
 {
+
+//    var id: Int,
+//    var description: String,
+//    var durationInDays: Int,
+//    var successorTasks: MutableList<Task> = mutableListOf()
+
     // Declare class attributes
     // text fields for adding and removing table elements
     private JTextField NameTextField;
@@ -133,19 +139,22 @@ public class TaskFormFrame extends JPanel
 
         // actual table
         JTable successorTasksTable = new JTable(successorTasksModel);
-        JScrollPane successorScrollPane = new JScrollPane(successorTasksTable); // Add table to a scroll pane for better usability
+        JScrollPane scrollPane = new JScrollPane(successorTasksTable); // Add table to a scroll pane for better usability
 
         JLabel infoLabel = new JLabel("Tasks appear in their respective order of completion");
         JFrame frame = new JFrame("Tasks Table");
 
         frame.setLayout(new BorderLayout()); // Set layout manager
-        frame.add(successorScrollPane); // Add the scroll pane to the frame
+        frame.add(scrollPane); // Add the scroll pane to the frame
         frame.setSize(400, 300); // Set the size of the frame
 
         frame.add(infoLabel, BorderLayout.NORTH); // Add label at the top of the frame
-        frame.add(successorScrollPane, BorderLayout.CENTER); // Add the table in the center
+        frame.add(scrollPane, BorderLayout.CENTER); // Add the table in the center
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Set default close operation
         frame.setVisible(true); // Make sure the frame is visible
+
+
+
     }
 }
 

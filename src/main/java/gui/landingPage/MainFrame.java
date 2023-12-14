@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 // Main frame of GUI, to be used across all pages
@@ -18,7 +19,6 @@ public class MainFrame extends JFrame
     // Class variables
     // Declare and initialise empty array list of project objects
     ArrayList<Project> projects = new ArrayList<>();
-    ArrayList<Task> tasks = new ArrayList<>();
 
     // Constructor
     public MainFrame()
@@ -61,6 +61,21 @@ public class MainFrame extends JFrame
         tasksButton.setForeground(Color.WHITE);
         usersButton.setForeground(Color.WHITE);
         projectsButton.setForeground(Color.WHITE);
+
+        Insets buttonMargin = new Insets(10, 10, 10, 10); // Top, left, bottom, right margins
+        tasksButton.setMargin(buttonMargin);
+        usersButton.setMargin(buttonMargin);
+        projectsButton.setMargin(buttonMargin);
+
+        Dimension buttonSize = new Dimension(120, 40); // Width, height
+        tasksButton.setPreferredSize(buttonSize);
+        usersButton.setPreferredSize(buttonSize);
+        projectsButton.setPreferredSize(buttonSize);
+
+        Font buttonFont = new Font("Arial", Font.PLAIN, 16); // Font name, style, size
+        tasksButton.setFont(buttonFont);
+        usersButton.setFont(buttonFont);
+        projectsButton.setFont(buttonFont);
 
         projectsButton.setOpaque(true);
         projectsButton.setContentAreaFilled(true);
@@ -157,6 +172,7 @@ public class MainFrame extends JFrame
 
 
     } // End of constructor
+
 
 
 }
